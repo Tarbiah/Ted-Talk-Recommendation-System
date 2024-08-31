@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='recommendations.css') }}">
+    <script defer src="{{ url_for('static', filename='script.js') }}"></script>
+    <title>Recommended Talks</title>
+</head>
+
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo-container">
+                <img src="{{ url_for('static', filename='images/ted.jpg') }}" alt="Logo">
+            </div>
+            <div class="header-content">
+                <div class="title-container">
+                </div>
+                <div class="header-buttons">
+                    <button class="button">Watch</a></button>
+                    <button class="button">Discover</a></button>
+                    <button class="button">Attend</a></button>
+                    <button class="button">Participate</a></button>
+                    <button class="button">About</a></button>
+                    <button class="button">Sign In</a></button>
+                    <div class="membership">Membership</a></div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <h2>Recommended Talks</h2>
+    <div class="table-container">
+        <table border="1">
+            <tr>
+                <th>Main Speaker</th>
+                <th>Title</th>
+                <th>Open URL</th>
+            </tr>
+            {% for index, row in recommendations.iterrows() %}
+            <tr>
+                <td>{{ row['main_speaker'] }}</td>
+                <td>{{ row['title'] }}</td>
+                <td>
+                    <form action="{{ row['url'] }}" method="get" target="_blank">
+                        <button type="submit">Open URL</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+
+</html>
